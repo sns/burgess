@@ -1,1 +1,7 @@
-{"inventoryItems": []}
+{
+    "inventoryItems": [
+        "{\"name\": \"Apples\", \"quantity\": 3 }",
+        "{\"name\": \"Oranges\", \"quantity\": 7 }",
+        "{\"name\": \"Pomegranates\", \"quantity\": 55 }"                
+    ]
+}
