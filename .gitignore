@@ -26,6 +26,9 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+pyvenv.cfg
+.venv
+pip-selfcheck.json
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -127,3 +130,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+lunch.json
