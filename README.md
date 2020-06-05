@@ -1,3 +1,14 @@
+
 # burgess
 
-Execute ./run.ps1 to start the server (listening on port 8001)
+> python -m venv ./venv
+
+> .\venv\Scripts\Activate.ps1
+
+> pip install -r requirements.txt
+
+> alembic.exe upgrade head
+
+> ./run.ps1
+
+> open http://localhost:8081/ in your browser
