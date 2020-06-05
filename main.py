@@ -36,28 +36,28 @@ def UpdateInventoryData(inventoryData: List[Item]):
         fake_db.close()
 
 @app.get("/inventory")
-async def inventory():
+async def fetchInventory():
     """
     Displays the entire inventory
     """
     return getInventoryData()
     
 @app.get("/inventory/{item_name}")
-async def inventory(item_name: str = None):
+async def fetchInventoryItem(item_name: str = None):
     """
     Displays a single inventory item
     """    
     return next((item for item in getInventoryData() if item.name.lower() == item_name.lower()), None)
 
 @app.put("/inventory")
-async def inventory(inventory: List[Item]):
+async def updateInventory(inventory: List[Item]):
     """
     Replaces the inventory with the inventory passed in with the request body
     """
     UpdateInventoryData(inventory)
 
 @app.put("/inventory/{item_name}")
-async def inventory(inventoryItem: Item, item_name: str):
+async def updateInventoryItem(inventoryItem: Item, item_name: str):
     """
     Replaces the inventory whose name is {item_name} with the inventory passed in with the request body
     """
@@ -66,8 +66,35 @@ async def inventory(inventoryItem: Item, item_name: str):
         if(item.name.lower() == item_name.lower()):
             inventoryData[index] = inventoryItem
             break
-
     UpdateInventoryData(inventoryData)
+
+@app.post("/inventory")
+async def addInventoryItem(inventoryItem: Item):
+    """
+    creeates a a new inventory item from the data passed in with the request body
+    """
+    inventoryData = getInventoryData()
+    isUpdate = False
+    for index, item in enumerate(inventoryData):
+        if(item.name.lower() == inventoryItem.name.lower()):
+            inventoryData[index] = inventoryItem
+            isUpdate = True
+    if not isUpdate:
+        inventoryData.append(inventoryItem)
+    UpdateInventoryData(inventoryData)
+
+@app.delete("/inventory/{item_name}")
+async def deleteInventoryItem(item_name: str):
+    inventoryData = getInventoryData()
+    for index, item in enumerate(inventoryData):
+        if(item.name.lower() == item_name.lower()):
+            del inventoryData[index]
+            UpdateInventoryData(inventoryData)
+
+@app.delete("/inventory")
+async def clearInventory():
+    UpdateInventoryData([])
+
 
 import uvicorn
 if __name__ == "__main__":

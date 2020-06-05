@@ -1,1 +1,1 @@
-{"inventoryItems": ["{\"name\": \"Pineapples\", \"quantity\": 20}"]}
+{"inventoryItems": []}
