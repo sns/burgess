@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
-from models.item import Item
+from models.requests.inventory.item import Item
 import json
 import logging
 
